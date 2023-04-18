@@ -39,6 +39,9 @@ from env.tasks.vec_task_wrappers import VecTaskPythonWrapper
 
 from env.tasks.humanoid_head_reach import HumanoidHeadReach
 from env.tasks.humanoid_location_reach import HumanoidLocationReach
+from env.tasks.humanoid_location_reach_stage import HumanoidLocationReachStage
+from env.tasks.humanoid_kick import HumanoidKick
+from env.tasks.humanoid_shield_attack import HumanoidShieldAttack
 
 from isaacgym import rlgpu
 

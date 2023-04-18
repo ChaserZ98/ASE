@@ -1,0 +1,71 @@
+# if given, will override the device setting in gym. 
+env: 
+  numEnvs: 4096
+  envSpacing: 5
+  episodeLength: 300
+  isFlagrun: False
+  enableDebugVis: False
+  
+  pdControl: True
+  powerScale: 1.0
+  controlFrequencyInv: 2 # 30 Hz
+  stateInit: "Default"
+  hybridInitProb: 0.5
+  numAMPObsSteps: 10
+  
+  localRootObs: True
+  keyBodies: ["right_hand", "left_hand", "right_foot", "left_foot", "sword", "shield"]
+  contactBodies: ["right_foot", "left_foot"]
+  terminationHeight: 0.15
+  enableEarlyTermination: True
+  
+  tarSpeed: 1.5
+  tarChangeStepsMin: 100
+  tarChangeStepsMax: 200
+  tarDistMax: 5.0
+  tarHeightMin: 0.5
+  tarHeightMax: 1.8
+  enableTaskObs: True
+
+  distThreshold: 0.8
+
+  # in location stage (distance > distThreshold), only compute velocity reward and facing reward. Fix position reward to 0
+  locationRewardWeight: 0.5
+
+  velErrScale: 2.0
+  velRewardWeight: 0.8
+  faceRewardWeight: 0.2
+
+  # in reach stage (distance <= distThreshold), only compute position reward. Fix velocity reward and facing reward to 1
+  reachRewardWeight: 0.5
+  
+  posErrScale: 4.0
+  posRewardWeight: 1.0
+
+  reachBodyName: "sword"
+
+  asset:
+    assetRoot: "ase/data/assets"
+    assetFileName: "mjcf/amp_humanoid_sword_shield.xml"
+
+  plane:
+    staticFriction: 1.0
+    dynamicFriction: 1.0
+    restitution: 0.0
+
+sim:
+  substeps: 2
+  physx:
+    num_threads: 4
+    solver_type: 1  # 0: pgs, 1: tgs
+    num_position_iterations: 4
+    num_velocity_iterations: 0
+    contact_offset: 0.02
+    rest_offset: 0.0
+    bounce_threshold_velocity: 0.2
+    max_depenetration_velocity: 10.0
+    default_buffer_size_multiplier: 10.0
+
+  flex:
+    num_inner_iterations: 10
+    warm_start: 0.25
